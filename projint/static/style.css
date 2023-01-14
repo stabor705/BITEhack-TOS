@@ -1,0 +1,50 @@
+.problem-card {
+    max-width: 520px;
+    margin: 2rem auto 0 auto;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px gray;
+    padding: 1rem;
+}
+
+.problem-info {
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.expression {
+    font-size: 2rem;
+}
+
+.transformation {
+    font-size: 2rem;
+    border: 2px dashed black;
+    margin: 1rem 0;
+    max-width: 15rem;
+    display: block;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.empty-transformation {
+    padding: 2rem 1.5rem;
+}
+
+.selected {
+    background-color: #fcd062;
+}
+
+.choices {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.choice {
+    margin: 0 1rem;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.problem {
+    margin: 2rem 0.5rem 2rem 0.5rem;
+}

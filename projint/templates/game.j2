@@ -1,10 +1,35 @@
 {% extends "base.j2" %}
 {% block title %}Game{% endblock %}
+{% block head %}
+<script src="/static/game.js" defer></script>
+{% endblock %}
+
 {% block content %}
-    <div class="container-md">
-        <p>Wynik: {{ game.score }}</p>
-        <p>Próba: </p>
-        <form method="get" action="/game/{{ game_id }}">
+    <div class="problem-card">
+        <div class="problem-info">
+            <p>Wynik: {{ score }}</p>
+            <p>Próba: {{ tries + 1 }}</p>
+        </div>
+        <div class="problem">
+            <div class="expression">
+                \( {{ round.integral }} \)
+            </div>
+            {% for i in range(round.transformations_num) %}
+            <div class="transformation empty-transformation" data-idx = "{{ i }}">
+            </div>
+            {% endfor %}
+            <div class="choices">
+            {% for transformation in round.transformations %}
+                <div class="choice" data-idx="{{ transformation.idx }}">
+                    \( {{ transformation.content }} \)
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <form method="post" action="/game/{{ game_id }}">
+            {% for i in range(round.transformations_num) %}
+            <input type="hidden" name="{{ i }}" id="in-{{ i }}">
+            {% endfor %}
             <button type="submit" class="btn btn-primary">Dalej</button>
             <a href=""><button class="btn btn-secondary">Wyjdź</button></a>
         </form>
