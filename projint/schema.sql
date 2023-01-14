@@ -17,17 +17,17 @@ CREATE TABLE integrals (
 
 CREATE TABLE user_windows (
     id integer NOT NULL,
-    proposed_answers integer NOT NULL,
+    proposed_answers text NOT NULL,
     FOREIGN KEY (id) REFERENCES integrals (id),
     CONSTRAINT user_windows_PK PRIMARY KEY(id, proposed_answers)
 );
 
 CREATE TABLE ans_windows (
     id integer NOT NULL,
-    window_id integer NOT NULL,
+    answers text NOT NULL,
     window_number integer NOT NULL,
     FOREIGN KEY (id) REFERENCES integrals (id),
-    CONSTRAINT ans_windows PRIMARY KEY(id, window_id)
+    CONSTRAINT ans_windows PRIMARY KEY(id, answers)
 
 );
 
@@ -41,8 +41,8 @@ CREATE TABLE game_data (
     id integer PRIMARY KEY,
     score_in_game integer NOT NULL,
     longest_series integer NOT NULL,
-    game_start_time integer NOT NULL,
-    game_finish_time integer NOT NULL,
+    game_start_time datetime NOT NULL,
+    game_finish_time datetime NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
