@@ -10,6 +10,9 @@ def create_app(test_config = None):
         SECRET_KEY='dev',
     )
 
+    from . import db
+    db.init_app(app)
+    
     app.register_blueprint(game.bp)
     @app.get("/")
     def main_endpoint():
