@@ -66,10 +66,11 @@ def start_game_endpoint():
     #
     # rounds = Round(ints['integral_string'], [transformations])
 
-
     app_db.execute('''insert into game_data (user_id, game_start_time) VALUES (0, ?);''', (datetime.datetime.now(),))
-    game = Game(app_db.execute('''select id from game_data order by id desc limit 1'''),
-                random.shuffle(getRounds(3, 0) + getRounds(2, 1)))
+    gameId = app_db.execute('''select id from game_data order by id desc limit 1''').fetchone()['id']
+    game = Game(gameId,
+                getRounds(3, 0) + getRounds(2, 1))
+    print(game.gameID)
 
     session['game'] = jsonpickle.encode(game)
     return redirect('my_game')
@@ -77,14 +78,13 @@ def start_game_endpoint():
 def checkRound(game, ind):
     round = game.rounds[ind]
     for i in range(round.transformations_num):
-        pass
+        if request[f'{i}'] == i:
+            game.score += 10
 
 @bp.route('/my_game', methods=('GET', 'POST'))
 def game_endpoint():
     app_db = db.get_db()
     game = jsonpickle.decode(session['game'])
-
-
 
     game.current_round += 1
     session['game'] = jsonpickle.encode(game)
