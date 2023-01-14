@@ -1,0 +1,12 @@
+{% extends "base.j2" %}
+{% block title %}Game{% endblock %}
+{% block content %}
+    <div class="container-md">
+        <p>Wynik: {{ game.score }}</p>
+        <p>Próba: </p>
+        <form method="get" action="/game/{{ game_id }}">
+            <button type="submit" class="btn btn-primary">Dalej</button>
+            <a href=""><button class="btn btn-secondary">Wyjdź</button></a>
+        </form>
+    </div>
+{% endblock %}

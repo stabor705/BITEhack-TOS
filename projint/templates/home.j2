@@ -1,0 +1,8 @@
+{% extends "base.j2" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Witaj w {{ project_name }}!</h1>
+<form method="get" action="/start_game">
+    <button type="submit" class="btn btn-success">Zacznij grę</button>
+</form>
+{% endblock %}
