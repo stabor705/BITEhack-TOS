@@ -24,10 +24,10 @@ CREATE TABLE user_windows (
 
 CREATE TABLE ans_windows (
     id integer NOT NULL,
-    window_id integer NOT NULL,
-    window_number text NOT NULL,
+    answers text NOT NULL,
+    window_number integer NOT NULL,
     FOREIGN KEY (id) REFERENCES integrals (id),
-    CONSTRAINT ans_windows PRIMARY KEY(id, window_id)
+    CONSTRAINT ans_windows PRIMARY KEY(id, answers)
 
 );
 

@@ -9,12 +9,12 @@ class Transformation:
         self.idx = idx
         self.content = content
 class Round:
-    def __init__(self, integral: str, transformations: List[Transformation]):
+    def __init__(self, integral: str, transformations: list[Transformation]):
         self.integral = integral
         self.transformations = transformations
 
 class Game:
-    def __init__(self, rounds: List[Round]):
+    def __init__(self, rounds: list[Round]):
         self.score = 0
         self.tries = 0
         self.rounds = rounds
