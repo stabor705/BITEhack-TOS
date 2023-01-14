@@ -1,4 +1,4 @@
-INSERT INTO ans_windows (id, answers, window_number);
+INSERT INTO ans_windows (id, answers, window_number)
 VALUES
 (0,'c',1),
 (1,'ax + c',1),

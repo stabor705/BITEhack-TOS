@@ -1,4 +1,4 @@
-INSERT INTO integrals (id, integral_string, integral_type, integral_level);
+INSERT INTO integrals (id, integral_string, integral_type, integral_level)
 VALUES
 (0,'\int 0 dx','Podstawowa',0),
 (1,'\int a dx','Podstawowa',0),

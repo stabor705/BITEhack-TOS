@@ -1,4 +1,4 @@
-INSERT INTO ans_windows (id, proposed_answers);
+INSERT INTO user_windows (id, proposed_answers)
 VALUES
 (1,'c'),
 (1,'1'),
