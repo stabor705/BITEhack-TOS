@@ -26,7 +26,7 @@
             {% endfor %}
             </div>
         </div>
-        <form method="post" action="/game/{{ game_id }}">
+        <form method="post" action="/my_game">
             {% for i in range(round.transformations_num) %}
             <input type="hidden" name="{{ i }}" id="in-{{ i }}">
             {% endfor %}

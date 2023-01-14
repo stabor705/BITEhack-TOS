@@ -20,13 +20,15 @@ def close_db(e=None):
 
 def init_db():
     db = get_db()
-    with current_app.open_resource('schema.sql') as f:
+    with current_app.open_resource('./sql/schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
-    with current_app.open_resource('../insertsA.sql') as f:
+    with current_app.open_resource('./sql/insertsA.sql') as f:
         db.executescript(f.read().decode('utf8'))
-    with current_app.open_resource('../insertsU.sql') as f:
+    with current_app.open_resource('./sql/insertsU.sql') as f:
         db.executescript(f.read().decode('utf8'))
-    with current_app.open_resource('../insertsQ.sql') as f:
+    with current_app.open_resource('./sql/insertsQ.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+    with current_app.open_resource('./sql/insertsUsers.sql') as f:
         db.executescript(f.read().decode('utf8'))
 @click.command('init-db')
 def init_db_command():

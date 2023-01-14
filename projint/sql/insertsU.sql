@@ -63,6 +63,4 @@ VALUES
 (16,'-xcosx + \int cosxdx'),
 (17,'-lnt + c'),
 (17,'-\frac{1}{3} t^{\frac{3}{2}} + c'),
-(17,'ln(lnx) + c'),
-(17,'-lnt + c'),
 (17,'ln(lnx) + c');
