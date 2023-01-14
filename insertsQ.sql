@@ -1,4 +1,4 @@
-INSERT INTO integrals (id, integral_string, integral_type, integral_level);
+INSERT INTO integrals (id, integral_string, integral_type, integral_level)
 VALUES
 (0,'\int 0 dx','Podstawowa',0),
 (1,'\int a dx','Podstawowa',0),
@@ -11,4 +11,10 @@ VALUES
 (8,'\int \frac{1}{cos^2 x} dx','Podstawowa',0),
 (9,'\int \frac{1}{sin^2 x} dx','Podstawowa',0),
 (10,'\int \frac{1}{1+x^2} dx','Podstawowa',0),
-(11,'\int \frac{1}{\sqrt{1-x^2}} dx','Podstawowa',0);
+(11,'\int \frac{1}{\sqrt{1-x^2}} dx','Podstawowa',0),
+(12,'\int xe^{-x^2}dx','Części',1),
+(13,'\int x\sqrt{a^2-x^2}dx','Części',1),
+(14,'\int xe^{-x}dx','Części',1),
+(15,'\int tgxdx','Części',1),
+(16,'\int \frac{1}{xlnx}dx','Części',1),
+(17,'\int xsinxdx','Części',1);
