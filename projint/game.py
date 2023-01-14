@@ -7,10 +7,12 @@ bp = Blueprint('game', __name__)
 class Game():
     def __init__(self):
         self.score = 0
+        self.tries = 0
 
 @bp.get('/start_game')
 def start_game_endpoint():
-    session['game'] = jsonpickle.encode(Game())
+    game = Game()
+    session['game'] = jsonpickle.encode(game)
     return redirect('my_game')
     
 @bp.get('/my_game')
