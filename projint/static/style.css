@@ -19,14 +19,16 @@
     font-size: 2rem;
     border: 2px dashed black;
     margin: 1rem 0;
-    max-width: 15rem;
     display: block;
     cursor: pointer;
     padding: 0.5rem;
+    max-width: fit-content;
 }
 
 .empty-transformation {
-    padding: 2rem 1.5rem;
+    min-width: 10rem;
+    min-height: 3rem;
+    max-width: 10rem;
 }
 
 .selected {
@@ -47,4 +49,9 @@
 
 .problem {
     margin: 2rem 0.5rem 2rem 0.5rem;
+}
+
+.content {
+    max-width: 720px;
+    margin: auto;
 }

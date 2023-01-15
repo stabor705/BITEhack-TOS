@@ -9,24 +9,35 @@ Array.from(document.getElementsByClassName("choice"))
     })
 
 let selected = null;
+select(document.getElementById("transformations").children[0]);
 let lastChoice = null;
 
-function transformationClicked(event) {
-    let element = event.currentTarget;
+function select(element) {
     if (selected != null) {
-        toggleSelected(selected)
+        toggleSelectedClass(selected);
     }
-    selected = element;
-    toggleSelected(element);
+    toggleSelectedClass(element);
 }
 
-function toggleSelected(element) {
+function toggleSelectedClass(element) {
+    if (element == null || element == undefined)
+        return;
+    console.log(element.className);
     let className = "transformation";
     if (element.innerHTML.trim() == "")
         className += " empty-transformation";
-    if (!element.getAttribute("class").endsWith("selected"))
+    console.log(element.className);
+    if (!element.className.endsWith("selected")) {
         className += " selected";
+        selected = element;
+    }
+    
     element.className = className;
+}
+
+function transformationClicked(event) {
+    let element = event.currentTarget;
+    select(element);
 }
 
 function choiceClicked(event) {
@@ -36,20 +47,28 @@ function choiceClicked(event) {
     insertChoice(selected, element);
 }
 
-function insertChoice(element, choice) {
-    let inIdx = element.getAttribute("data-idx");
+function insertChoice(space, choice) {
+    let inIdx = space.getAttribute("data-idx");
     let input = document.getElementById("in-" + inIdx);
     let choiceIdx = choice.getAttribute("data-idx");
-    element.setAttribute("class", "transformation");
-    if (element.innerHTML.trim() != "") {
-        lastChoice.innerHTML = element.innerHTML;
+    swapHTML(space, choice);
+    selectNext(space);
+    input.value = choiceIdx;
+    lastChoice = choice;
+}
+
+function swapHTML(space, choice) {
+    if (space.innerHTML.trim() != "") {
+        lastChoice.innerHTML = space.innerHTML;
         lastChoice.hidden = false;
     }
-    element.innerHTML = choice.innerHTML;
+    space.innerHTML = choice.innerHTML;
     choice.innerHTML = "";
     choice.hidden = true;
-    input.value = choiceIdx;
-    console.log(input);
-    selected = null;
-    lastChoice = choice;
+}
+
+function selectNext(element) {
+    let transformations = Array.from(document.getElementById("transformations").children);
+    let nextTransformation = transformations[transformations.findIndex(e => e === element) + 1];
+    select(nextTransformation);
 }
