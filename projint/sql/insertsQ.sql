@@ -17,4 +17,10 @@ VALUES
 (14,'\int xe^{-x}dx','Części',1),
 (15,'\int tgxdx','Części',1),
 (16,'\int \frac{1}{xlnx}dx','Części',1),
-(17,'\int xsinxdx','Części',1);
+(17,'\int xsinxdx','Części',1),
+(18,'\int e^{\sqrt{x}}dx','Trygonometryczny',2),
+(19,'\int sin(lnx)dx','Trygonometryczny',2),
+(20,'\int \frac{ctgx}{ln(sinx)}dx','Trygonometryczny',2),
+(21,'\int \frac{1}{e^x+e^{-x}}','Trygonometryczny',2),
+(22,'\int arcsinx dx','Trygonometryczny',2),
+(23,'\int sin^2 xcos^2 xdx','Trygonometryczny',2);
