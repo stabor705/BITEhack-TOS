@@ -17,11 +17,11 @@ class Round:
         self.transformations = transformations
         self.transformations_num = answers_num
         self.level = level
-
+        self.tries = 0
 class Game:
     def __init__(self, ID:int, rounds: list[Round]):
+        self.previousSerie = True
         self.score = 0
-        self.tries = 0
         self.rounds = rounds
         self.current_round = -1
         self.failures = 0
@@ -68,10 +68,10 @@ def start_game_endpoint():
     gameId = app_db.execute('''select id from game_data order by id desc limit 1''').fetchone()['id']
     level = (int)(request.form['level'])
     game = None
-    if level == 1:
+    if level == 0:
         game = Game(gameId,
                     getRounds(5, 0))
-    elif level == 2:
+    elif level == 1:
         game = Game(gameId,
                     getRounds(3, 0) + getRounds(2, 1))
     else:
@@ -103,6 +103,7 @@ def checkRound(game, ind):
 
     return is_right_answer
 
+
 @bp.route('/my_game', methods=('GET', 'POST'))
 def game_endpoint():
     game = jsonpickle.decode(session['game'])
@@ -110,8 +111,9 @@ def game_endpoint():
     if game.current_round != -1:
         answers = checkRound(game, game.current_round)
         if False in answers:
+            game.rounds[game.current_round].tries += 1
             game.current_round -= 1
-            game.tries += 1
+
         else:
             answers = None
         #request.form['answers'] = answers
@@ -124,6 +126,14 @@ def game_endpoint():
             where id = ?""",
                        (datetime.datetime.now(), game.score, 0, game.gameID))
         app_db.commit()
+
         return redirect("/")
 
     return render_template('game.j2', game=game, round=game.rounds[game.current_round], answers=answers)
+
+# @bp.route('/stats', method=('POST', 'GET'))
+# def make_stats_endpoint():
+#     app_db = db.get_db()
+#     stats =  app_db.execute('''select * from game_data where game_finish_time IS NOT NULL''').fetchall()
+#
+#     statistics = [len(stats) * 5, sum(( (datetime)(stats[i]['game_finish_time']) - (datetime.datetime)(stats[i]['game_start_time'])) for i in stats)]
