@@ -61,3 +61,19 @@ body{
     margin: auto;
 }
 
+.btn {
+    min-height: 50px;
+    min-width: 80px;
+    background-color: #ECF4F1;
+    color: #080E2C;
+}
+
+.btn:hover {
+    background-color: #D1E0DB;
+    color: black;
+}
+
+.btn-primary {
+    float: right;
+}
+
