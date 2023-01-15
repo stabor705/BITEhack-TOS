@@ -1,0 +1,7 @@
+{% extends "base.j2" %}
+{% block title %} Stats {% endblock %}
+{% block content %} 
+<h1>Twoje statystyki</h1>
+Ilość rozwiązanych całek: {{ integrals_solved }}
+Skuteczność: {{ accuracy }}
+{% endblock %}
