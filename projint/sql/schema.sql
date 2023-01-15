@@ -1,6 +1,3 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS post;
-
 DROP TABLE IF EXISTS integrals;
 DROP TABLE IF EXISTS user_windows;
 DROP TABLE IF EXISTS ans_windows;
@@ -37,11 +34,11 @@ CREATE TABLE users (
 );
 
 CREATE TABLE game_data (
-    user_id integer NOT NULL, --FOREIGN KEY REFERENCES('users.id'),
+    user_id integer NOT NULL,
     id integer PRIMARY KEY AUTOINCREMENT,
     score_in_game integer,
     longest_series integer,
-    game_start_time datetime NOT NULL,
+    game_start_time datetime,
     game_finish_time datetime,
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
