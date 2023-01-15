@@ -53,9 +53,7 @@
                 {% else %}
                     {% for transformation in round.transformations %}
                     {% if transformation.idx == i %}
-                        <div class="transformation" data-idx="{{ i }}" value="{{ i }}">
-                            \( {{ transformation.content }} \)
-                        </div>
+                        <input type="hidden" name="{{ i }}" id="in-{{ i }}" value="{{ i }}">
                     {% endif %}
                     {% endfor %}
                 {% endif %}
