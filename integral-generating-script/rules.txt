@@ -1,0 +1,4 @@
+W plikach Q całki są po kolei
+W plikach A całki są po kolei, a każdy element rozwiązania jest opatrzony numerem wewnątrz $ oznaczający numer okienka
+w rozwiązaniu dla danej formuły matematycznej
+W plikach U przed każdą serią okienek do danej całki jest ich numer poza $

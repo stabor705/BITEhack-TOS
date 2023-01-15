@@ -17,5 +17,9 @@ def create_app(test_config = None):
     @app.get("/")
     def main_endpoint():
         return render_template('home.j2', project_name = 'aseof')
+    
+    @app.get("/about")
+    def about_endpoint():
+        return render_template('about.j2')
 
     return app

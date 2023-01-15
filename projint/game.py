@@ -107,4 +107,4 @@ def game_endpoint():
         app_db.commit()
         return redirect("/")
 
-    return render_template('game.j2', score=game.score, tries=game.tries, round=game.rounds[game.current_round])
+    return render_template('game.j2', game=game, round=game.rounds[game.current_round])

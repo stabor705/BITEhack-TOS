@@ -40,7 +40,7 @@ pip3 install -r requirements.txt
 
 4. Run flask application
 ``` sh
-flask --app erudite run --debugger
+flask --app projint run --debugger
 ```
 
 ## Contributing

@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+$
+% 1
+\begin{vmatrix} t = \sqrt{x}\\  dt = \frac{1}{2\sqrt{x}}dx\\ dx = 2tdt \end{vmatrix}
+$
+
+$
+% 2
+2\int te^t dt 
+$
+
+$
+% 3
+\begin{vmatrix} u = t & \frac{dv}{dt} = e^t\\  \frac{du}{dt} = 1 & v = e^t\end{vmatrix}
+$
+
+$
+% 4
+te^t - \int e^t
+$
+
+$
+% 5
+te^t - e^t + c
+$
+
+$
+% 6
+\sqrt{x}e^{\sqrt{x}} - e^{\sqrt{x}} + c
+$
+
+$
+% 1
+\begin{vmatrix} u = sin(lnx) & \frac{dv}{dt} = 1\\  \frac{du}{dt} = \frac{1}{x}cos(lnx) & v = x \end{vmatrix}
+$
+
+$
+% 2
+xsin(lnx) - \int cos(lnx)dx
+$
+
+$
+% 3
+\begin{vmatrix} u = cos(lnx) & \frac{dv}{dt} = 1\\  \frac{du}{dt} = -\frac{1}{x} sin(lnx) & v = x \end{vmatrix}
+$
+
+$
+% 4
+xsin(lnx) - xcos(lnx) - \int sin(lnx)dx
+$
+
+$
+% 5
+\frac{1}{2}x(sin(lnx) - cos(lnx)) + c
+$
+
+$
+% 1
+\int \frac{cosx}{ln(sinx)sinx}dx 
+$
+
+$
+% 2
+\begin{vmatrix} t = sinx \\ dt = cosxdx  \end{vmatrix}
+$
+
+$
+% 3
+\frac{1}{tlnt}dt
+$
+
+$
+% 4
+\begin{vmatrix} u = lnt \\ du = \frac{1}{t}dt \end{vmatrix}
+$
+
+$
+% 5
+\int \frac{1}{u}du
+$
+
+$
+% 6
+lnu + c
+$
+
+$
+% 7
+ln(ln(sinx)) + c
+$
+
+$
+% 1
+\int \frac{e^x}{e^{2x}+1}dx
+$
+
+$
+% 2
+\begin{vmatrix} t = e^x \\  dt = e^xdx \end{vmatrix}
+$
+
+$
+% 3
+\frac{1}{t^2 + 1}dt
+$
+
+$
+% 4
+arctgt + c
+$
+
+$
+% 5
+arctg(e^x) + c
+$
+
+$
+% 1
+\begin{vmatrix} u = arcsinx & \frac{dv}{dt} = 1 \\  \frac{du}{dt} = \frac{1}{\sqrt{1 - x^2}} & v = x \end{vmatrix}
+$
+
+$
+% 2
+xarcsinx - \int \frac{x}{\sqrt{1-x^2}}
+$
+
+$
+% 3
+\begin{vmatrix} t = 1 - x^2 \\ dt = -2xdx \\ -\frac{1}{2}dt = xdx \end{vmatrix}
+$
+
+$
+% 4
+xarcsinx + \int \frac{1}{2\sqrt{t}}dt
+$
+
+$
+% 5
+xarcsinx + \sqrt{t} + c
+$
+
+$
+% 6
+xarcsinx + \sqrt{1-x^2} + c
+$
+
+$
+% 1
+\int \frac{1}{2}(1-cos2x)\cdot\frac{1}{2}(1+cos2x)dx
+$
+
+$
+% 2
+\frac{1}{4}(1 - cos^2 2x)dx
+$
+
+$
+% 3
+\frac{1}{4} \int sin^2 2xdx 
+$
+
+$
+% 4
+\frac{1}{8} \int (1 - cos4x)dx 
+$
+
+$
+% 5
+\frac{1}{8}x + \frac{1}{32}sin4x + c
+$
+
+
+
+
+
+\end{document}
