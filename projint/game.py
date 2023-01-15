@@ -12,10 +12,11 @@ class Transformation:
         self.idx = idx
         self.content = content
 class Round:
-    def __init__(self, integral: str, answers_num: int, transformations: list[Transformation]):
+    def __init__(self, integral: str, answers_num: int, level:int, transformations: list[Transformation]):
         self.integral = integral
         self.transformations = transformations
         self.transformations_num = answers_num
+        self.level = level
 
 class Game:
     def __init__(self, ID:int, rounds: list[Round]):
@@ -38,7 +39,10 @@ def getRound(ind):
     transformations = [Transformation(i, answers[i]['answers']) for i in range(len(answers))] + \
                       [Transformation(-1, item['proposed_answers']) for item in other_windows]
     return Round(app_db.execute("""select integrals.integral_string from integrals where id = ?""",
-                             (ind,)).fetchone()['integral_string'],  len(answers), transformations)
+                             (ind,)).fetchone()['integral_string'],  len(answers),
+                 app_db.execute("""select integrals.integral_level from integrals where id = ?""",
+                             (ind,)).fetchone()['integral_level']
+                 , transformations)
 
 def getRounds(n, level):
     """Return list of n rounds with defined level """
@@ -83,16 +87,21 @@ def checkRound(game, ind):
     app_db = db.get_db()
     round = game.rounds[ind]
     is_right_answer = []
+    add_sum = 0
+    game.serie += 1
     for i in range(round.transformations_num):
         print(request.form[f'{i}'], i)
         if (request.form[f'{i}']) != '' and (int)(request.form[f'{i}']) == i:
-            game.score += 10
+            #add_sum += 10 * (game.serie + 1)
             is_right_answer.append(True)
         else:
             game.longest_serie = max(game.longest_serie, game.serie)
             game.serie = -1
             is_right_answer.append(False)
-    game.serie+=1
+
+    if  not False in is_right_answer:
+        game.score += ((round.level+1) * (game.serie+1) * 10)
+
     return is_right_answer
 
 @bp.route('/my_game', methods=('GET', 'POST'))
@@ -101,6 +110,9 @@ def game_endpoint():
     answers = None
     if game.current_round != -1:
         answers = checkRound(game, game.current_round)
+        if False in answers:
+            game.current_round -= 1
+            game.tries += 1
         #request.form['answers'] = answers
 
     game.current_round += 1

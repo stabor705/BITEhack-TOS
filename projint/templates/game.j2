@@ -15,6 +15,7 @@
             <h1>Całka {{ game.current_round + 1 }}/{{ game.rounds | length }}</h1>
             <p>Wynik: {{ game.score }}</p>
             <p>Próba: {{ game.tries + 1 }}</p>
+            <p>Serie: {{ game.serie + 1 }}</p>
         </div>
         <div class="problem">
             <div class="expression">
@@ -51,7 +52,6 @@
             {% endfor %}
             <a href=""><button class="btn btn-secondary">Wyjdź</button></a>
             <button type="submit" class="btn btn-primary">Dalej</button>
-            
         </form>
     </div>
 {% endblock %}

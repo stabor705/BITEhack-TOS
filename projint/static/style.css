@@ -1,3 +1,8 @@
+body{
+    background-color: #080E2C;
+    color: #ECF4F1;
+}
+
 .problem-card {
     max-width: 520px;
     margin: 2rem auto 0 auto;
@@ -17,7 +22,7 @@
 
 .transformation {
     font-size: 2rem;
-    border: 2px dashed black;
+    border: 2px dashed #ECF4F1;
     margin: 1rem 0;
     display: block;
     cursor: pointer;
@@ -32,7 +37,8 @@
 }
 
 .selected {
-    background-color: #fcd062;
+    border: 5px dashed #ECF4F1;
+    background-color: #181E3C;
 }
 
 .choices {
@@ -55,3 +61,20 @@
     max-width: 720px;
     margin: auto;
 }
+
+.btn {
+    min-height: 50px;
+    min-width: 80px;
+    background-color: #ECF4F1;
+    color: #080E2C;
+}
+
+.btn:hover {
+    background-color: #D1E0DB;
+    color: black;
+}
+
+.btn-primary {
+    float: right;
+}
+
