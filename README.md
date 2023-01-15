@@ -1,10 +1,10 @@
 # BITEhack-TOS
 
-Temat:
-Nauka dla wszystkich
+Subject: 
+Science for everybody
 
-Nasza propozycja:
-Aplikacja typu "Duolingo" do całek
+Our proposal:
+"Duolingo" style application for integrals
 
 
 ## Running in development environment
@@ -62,3 +62,16 @@ git push origin new-features
 
 5. Create pull request on Github
 
+## Adding integrals
+
+1. Open integral-generating-script/Lvl<n>Q.csv where n is chosen difficulty level
+
+2. Add integral you want to see
+  
+3. Open integral-generating-script/Lvl<n>A.csv and add answers to the integral
+  
+4. Launch integral-generating-script/main.py
+  
+5. Copy all 3 .sql files from integral-generating-script to projint/sql
+  
+6. Initialize database
