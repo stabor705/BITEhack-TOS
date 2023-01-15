@@ -94,4 +94,4 @@ def game_endpoint():
                        (datetime.datetime.now(), game.score, 0, game.gameID))
         return redirect("/")
 
-    return render_template('game.j2', score=game.score, tries=game.tries, round=game.rounds[game.current_round])
+    return render_template('game.j2', game=game, round=game.rounds[game.current_round])
