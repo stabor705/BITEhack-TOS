@@ -48,9 +48,19 @@
         </div>
         <form method="post" action="/my_game">
             {% for i in range(round.transformations_num) %}
-            <input type="hidden" name="{{ i }}" id="in-{{ i }}">
+                {% if answers is none or answers[i] == false %}
+                    <input type="hidden" name="{{ i }}" id="in-{{ i }}">
+                {% else %}
+                    {% for transformation in round.transformations %}
+                    {% if transformation.idx == i %}
+                        <div class="transformation" data-idx="{{ i }}" value="{{ i }}">
+                            \( {{ transformation.content }} \)
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
-            <a href=""><button class="btn btn-secondary">Wyjdź</button></a>
+            <a href="/" class="btn btn-secondary" role="button">Wyjdź</a>
             <button type="submit" class="btn btn-primary">Dalej</button>
         </form>
     </div>
