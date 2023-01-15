@@ -69,6 +69,11 @@ body{
     color: #080E2C;
 }
 
+.btn:active {
+    background-color: #ECF4F1;
+    color: #080E2C;
+}
+
 .btn:hover {
     background-color: #D1E0DB;
     color: black;
@@ -78,3 +83,15 @@ body{
     float: right;
 }
 
+.btn-success {
+    margin: 20px;
+}
+
+#welcome-header {
+    text-align: center;
+    margin: 20px;
+}
+
+#welcome-description {
+    text-align: center;
+}

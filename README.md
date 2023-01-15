@@ -1,22 +1,11 @@
 # BITEhack-TOS
 
-Temat:
-Nauka dla wszystkich
+Subject: 
+Science for everybody
 
-Nasza propozycja:
-Aplikacja typu "Duolingo" do całek
+Our proposal:
+"Duolingo" style application for integrals
 
-
-## Priorytety:
-- Poziomy trudności (różny typ podawania rozwiązywania - boxy, wpisywanie oraz różna trudność całek)
-- Poziom 0 - nauka całek podstawowych (typu całka z 1/x = ln x)
-- Przystępne GUI
-- Nagradzanie za akcje
-- Solidna baza przykładów
-
-## Dodatki:
-- Rzeczy typu skrzynki, skiny
-- Solver do całek
 
 ## Running in development environment
 In order to run program
@@ -38,10 +27,16 @@ python3 -m venv venv
 pip3 install -r requirements.txt
 ```
 
-4. Run flask application
+4. Initialize database
+```
+flask --app projint init-db
+```
+
+5. Run flask application
 ``` sh
 flask --app projint run --debugger
 ```
+
 
 ## Contributing
 
@@ -67,3 +62,16 @@ git push origin new-features
 
 5. Create pull request on Github
 
+## Adding integrals
+
+1. Open integral-generating-script/Lvl<n>Q.csv where n is chosen difficulty level
+
+2. Add integral you want to see
+  
+3. Open integral-generating-script/Lvl<n>A.csv and add answers to the integral
+  
+4. Launch integral-generating-script/main.py
+  
+5. Copy all 3 .sql files from integral-generating-script to projint/sql
+  
+6. Initialize database
