@@ -113,6 +113,8 @@ def game_endpoint():
         if False in answers:
             game.current_round -= 1
             game.tries += 1
+        else:
+            answers = None
         #request.form['answers'] = answers
 
     game.current_round += 1
