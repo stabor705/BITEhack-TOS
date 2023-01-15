@@ -5,17 +5,19 @@
 <div id="welcome-description" class="text">
     Witaj w Całkuj! Wybierz poziom trudności i uzupełniaj okienka
 </div>
-<form method="post" action="/start_game">
+<div id="level-buttons" align="center">
+<form method="post" action="/start_game" align="center">
     <input type="hidden" name="level" value="1">
     <button type="submit" class="btn btn-success">Poziom 0</button>
 </form>
-<form method="post" action="/start_game">
+<form method="post" action="/start_game" align="center">
     <input type="hidden" name="level" value="2">
     <button type="submit" class="btn btn-success">Poziom 1</button>
 </form>
-<form method="post" action="/start_game">
+<form method="post" action="/start_game" align="center">
     <input type="hidden" name="level" value="2">
     <button type="submit" class="btn btn-success">Poziom 2</button>
 
 </form>
+</div>
 {% endblock %}
