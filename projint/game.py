@@ -73,7 +73,7 @@ def start_game_endpoint():
     app_db.commit()
     gameId = app_db.execute('''select id from game_data order by id desc limit 1''').fetchone()['id']
     game = Game(gameId,
-                getRounds(5, 0) ) #getRounds(2, 1))
+                getRounds(2, 0) +  getRounds(2,1) + getRounds(1,1)) #getRounds(2, 1))
     print(game.gameID)
 
     session['game'] = jsonpickle.encode(game)
@@ -82,20 +82,26 @@ def start_game_endpoint():
 def checkRound(game, ind):
     app_db = db.get_db()
     round = game.rounds[ind]
+    is_right_answer = []
     for i in range(round.transformations_num):
         print(request.form[f'{i}'], i)
         if (int)(request.form[f'{i}']) == i:
             game.score += 10
+            is_right_answer.append(True)
         else:
             game.longest_serie = max(game.longest_serie, game.serie)
             game.serie = -1
+            is_right_answer.append(False)
     game.serie+=1
+    return is_right_answer
 
 @bp.route('/my_game', methods=('GET', 'POST'))
 def game_endpoint():
     game = jsonpickle.decode(session['game'])
+    answers = None
     if game.current_round != -1:
-        checkRound(game, game.current_round)
+        answers = checkRound(game, game.current_round)
+        request.form['answers'] = answers
 
     game.current_round += 1
     session['game'] = jsonpickle.encode(game)
@@ -107,4 +113,4 @@ def game_endpoint():
         app_db.commit()
         return redirect("/")
 
-    return render_template('game.j2', game=game, round=game.rounds[game.current_round])
+    return render_template('game.j2', game=game, round=game.rounds[game.current_round], answers=answers)
