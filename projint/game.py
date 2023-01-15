@@ -38,6 +38,7 @@ def getRound(ind):
                                    (ind,)).fetchall()
     transformations = [Transformation(i, answers[i]['answers']) for i in range(len(answers))] + \
                       [Transformation(-1, item['proposed_answers']) for item in other_windows]
+    random.shuffle(transformations)
     return Round(app_db.execute("""select integrals.integral_string from integrals where id = ?""",
                              (ind,)).fetchone()['integral_string'],  len(answers),
                  app_db.execute("""select integrals.integral_level from integrals where id = ?""",
@@ -57,27 +58,25 @@ def getRounds(n, level):
                 ans.append(getRound(item['id']))
     return ans
 
-@bp.get('/start_game')
+@bp.route('/start_game', methods=('GET', 'POST'))
 def start_game_endpoint():
     app_db = db.get_db()
-    # ints = app_db.execute("""select * from integrals""").fetchone()
-    # answer = Transformation(0, app_db.execute(
-    #     """select ans_windows.answers from ans_windows where id = ?""", (ints['id'],)).fetchone())
-    # wrong_answers = app_db.execute(
-    #     """select user_windows.proposed_answers from user_windows where id = ?""", (ints['id'],)).fetchall()
-
-    # Transformation(app_db.execute(
-    #     """select ans_windows.answers from ans_windows where id = ?""", (ints['id'],)).fetchone())
-    # transformations = [answer] + [Transformation(-1, item['proposed_answers']) for item in wrong_answers]
-    #
-    # rounds = Round(ints['integral_string'], [transformations])
 
     app_db.execute('''insert into game_data (user_id, score_in_game, longest_series, game_start_time, game_finish_time) VALUES (0,NULL, NULL, ?, NULL);''',
                    (datetime.datetime.now(),))
     app_db.commit()
     gameId = app_db.execute('''select id from game_data order by id desc limit 1''').fetchone()['id']
-    game = Game(gameId,
-                getRounds(2, 0) +  getRounds(2,1) + getRounds(1,1)) #getRounds(2, 1))
+    level = (int)(request.form['level'])
+    game = None
+    if level == 1:
+        game = Game(gameId,
+                    getRounds(5, 0))
+    elif level == 2:
+        game = Game(gameId,
+                    getRounds(3, 0) + getRounds(2, 1))
+    else:
+        game = Game(gameId,
+                    getRounds(2, 0) + getRounds(2, 1) + getRounds(1, 1))
     print(game.gameID)
 
     session['game'] = jsonpickle.encode(game)

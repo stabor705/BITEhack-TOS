@@ -5,7 +5,17 @@
 <div class="text">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
-<form method="get" action="/start_game">
-    <button type="submit" class="btn btn-success">Zacznij grę</button>
+<form method="post" action="/start_game">
+    <input type="hidden" name="level" value="1">
+    <button type="submit" class="btn btn-success">Poziom 0</button>
+</form>
+<form method="post" action="/start_game">
+    <input type="hidden" name="level" value="2">
+    <button type="submit" class="btn btn-success">Poziom 1</button>
+</form>
+<form method="post" action="/start_game">
+    <input type="hidden" name="level" value="2">
+    <button type="submit" class="btn btn-success">Poziom 2</button>
+
 </form>
 {% endblock %}
