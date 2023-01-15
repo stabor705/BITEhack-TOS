@@ -85,7 +85,7 @@ def checkRound(game, ind):
     is_right_answer = []
     for i in range(round.transformations_num):
         print(request.form[f'{i}'], i)
-        if (int)(request.form[f'{i}']) == i:
+        if (request.form[f'{i}']) != '' and (int)(request.form[f'{i}']) == i:
             game.score += 10
             is_right_answer.append(True)
         else:
@@ -101,7 +101,7 @@ def game_endpoint():
     answers = None
     if game.current_round != -1:
         answers = checkRound(game, game.current_round)
-        request.form['answers'] = answers
+        #request.form['answers'] = answers
 
     game.current_round += 1
     session['game'] = jsonpickle.encode(game)
