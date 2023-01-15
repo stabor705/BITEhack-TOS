@@ -13,7 +13,7 @@ select(document.getElementById("transformations").children[0]);
 let lastChoice = null;
 
 function select(element) {
-    if (selected != null) {
+    if (selected != null || selected == undefined) {
         toggleSelectedClass(selected);
     }
     toggleSelectedClass(element);
@@ -22,15 +22,14 @@ function select(element) {
 function toggleSelectedClass(element) {
     if (element == null || element == undefined)
         return;
-    console.log(element.className);
     let className = "transformation";
     if (element.innerHTML.trim() == "")
         className += " empty-transformation";
-    console.log(element.className);
     if (!element.className.endsWith("selected")) {
         className += " selected";
         selected = element;
-    }
+    } else
+        selected = null;
     
     element.className = className;
 }
