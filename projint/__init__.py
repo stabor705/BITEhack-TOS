@@ -16,7 +16,7 @@ def create_app(test_config = None):
     app.register_blueprint(game.bp)
     @app.get("/")
     def main_endpoint():
-        return render_template('home.j2', project_name = 'aseof')
+        return render_template('home.j2', project_name = 'Całkuj!')
     
     @app.get("/about")
     def about_endpoint():
