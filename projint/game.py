@@ -25,6 +25,8 @@ class Game:
         self.current_round = -1
         self.failures = 0
         self.gameID = ID
+        self.longest_serie = 0
+        self.serie = -1
 
 def getRound(ind):
     app_db = db.get_db()
@@ -66,32 +68,43 @@ def start_game_endpoint():
     #
     # rounds = Round(ints['integral_string'], [transformations])
 
-    app_db.execute('''insert into game_data (user_id, game_start_time) VALUES (0, ?);''', (datetime.datetime.now(),))
+    app_db.execute('''insert into game_data (user_id, score_in_game, longest_series, game_start_time, game_finish_time) VALUES (0,NULL, NULL, ?, NULL);''',
+                   (datetime.datetime.now(),))
+    app_db.commit()
     gameId = app_db.execute('''select id from game_data order by id desc limit 1''').fetchone()['id']
     game = Game(gameId,
-                getRounds(3, 0) + getRounds(2, 1))
+                getRounds(5, 0) ) #getRounds(2, 1))
     print(game.gameID)
 
     session['game'] = jsonpickle.encode(game)
     return redirect('my_game')
 
 def checkRound(game, ind):
+    app_db = db.get_db()
     round = game.rounds[ind]
     for i in range(round.transformations_num):
-        if request[f'{i}'] == i:
+        print(request.form[f'{i}'], i)
+        if (int)(request.form[f'{i}']) == i:
             game.score += 10
+        else:
+            game.longest_serie = max(game.longest_serie, game.serie)
+            game.serie = -1
+    game.serie+=1
 
 @bp.route('/my_game', methods=('GET', 'POST'))
 def game_endpoint():
-    app_db = db.get_db()
     game = jsonpickle.decode(session['game'])
+    if game.current_round != -1:
+        checkRound(game, game.current_round)
 
     game.current_round += 1
     session['game'] = jsonpickle.encode(game)
     if game.current_round == 5:
+        app_db = db.get_db()
         app_db.execute("""update game_data set game_finish_time = ?, score_in_game = ?, longest_series = ? 
             where id = ?""",
                        (datetime.datetime.now(), game.score, 0, game.gameID))
+        app_db.commit()
         return redirect("/")
 
     return render_template('game.j2', game=game, round=game.rounds[game.current_round])
