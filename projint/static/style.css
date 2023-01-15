@@ -69,6 +69,11 @@ body{
     color: #080E2C;
 }
 
+.btn:active {
+    background-color: #ECF4F1;
+    color: #080E2C;
+}
+
 .btn:hover {
     background-color: #D1E0DB;
     color: black;
