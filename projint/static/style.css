@@ -78,3 +78,15 @@ body{
     float: right;
 }
 
+.btn-success {
+    margin: 20px;
+}
+
+#welcome-header {
+    text-align: center;
+}
+
+#welcome-description {
+    text-align: center;
+}
+
